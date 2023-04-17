@@ -43,3 +43,9 @@ def headers():
         "Vary: Accept-Encoding, Cookie, User-Agent"
     ]
     return '<br>'.join(headers)
+
+
+@app.post("/api/post")
+def post():
+    body = ['<h1>App is working</h1>', '<p><strong>Finally can get some coffee</strong></p>']
+    return '<br>'.join(body)
