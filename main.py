@@ -1,11 +1,22 @@
 import os
 import json
+import logging
 from flask import Flask, make_response
 from flask_restful import Api
 from simplexml import dumps
 
 app = Flask(__name__)
 api = Api(app)
+
+# Write to application access log
+app.logger.setLevel(logging.DEBUG)
+handler = logging.FileHandler('access.log')
+handler.setLevel(logging.INFO)
+app.logger.addHandler(handler)
+
+@app.before_request
+def log_request_info(request):
+    app.logger.info('Request: %s %s %s %s', request.method, request.url, request.headers, request.get_data())
 
 @api.representation('application/xml')
 def output_xml(data, code, headers=None):
