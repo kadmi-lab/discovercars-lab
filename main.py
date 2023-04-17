@@ -26,3 +26,20 @@ def hello_world():
 @app.route("/api/environment")
 def environment():
     return '<br>'.join(os.environ)
+
+@app.route("/api/headers")
+def headers():
+    headers=[
+        "HTTP/1.x 200 OK",
+        "Transfer-Encoding: chunked",
+        "Date: Sat, 28 Nov 2009 04:36:25 GMT",
+        "Server: nginx",
+        "Connection: close",
+        "X-Powered-By: W3 Total Cache/0.8",
+        "Cache-Control: max-age=3600, public",
+        "Content-Type: text/html; charset=UTF-8",
+        "Last-Modified: Sat, 28 Nov 2009 03:50:37 GMT",
+        "Content-Encoding: gzip",
+        "Vary: Accept-Encoding, Cookie, User-Agent"
+    ]
+    return '<br>'.join(headers)
