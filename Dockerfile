@@ -14,5 +14,6 @@ RUN pip install -r /app/requirements.txt
 COPY . /app
 
 
+EXPOSE 3000
 ENV FLASK_APP=main.py
 CMD [ "flask", "run","--host","0.0.0.0","--port","3000"]
