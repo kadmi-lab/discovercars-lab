@@ -6,6 +6,17 @@ services:
       context: .
     ports:
       - "3000:3000"
+    environment:
+      - DB_MYSQL_HOST=db
+      - DB_MYSQL_PORT=3306
+      - DB_MYSQL_USER=flask
+      - DB_MYSQL_PASSWORD=flask
+      - DB_MYSQL_NAME=flask
+    volumes:
+      - ./data:/data
+      - ./letsencrypt:/etc/letsencrypt
+    depends_on:
+      - db
 
   proxy:
     image: nginx:latest
@@ -15,3 +26,18 @@ services:
       - "8080:80"
     depends_on:
       - web
+
+  db:
+    image: 'jc21/mariadb-aria:latest'
+    restart: unless-stopped
+    environment:
+      - MYSQL_ROOT_PASSWORD=flask
+      - MYSQL_DATABASE=flask
+      - MYSQL_USER=flask
+      - MYSQL_PASSWORD=flask
+    volumes:
+      - ./mysql:/var/lib/mysql
+
+networks:
+  default:
+    name: my-network
