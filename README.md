@@ -19,7 +19,7 @@ When a user makes a request to the server, the "before_request" decorator logs i
 
 "/api/post" route returns HTML code indicating that the application is working and the developer can now get some coffee.
 
-docker-compose.yaml info 
+# docker-compose.yaml info 
 
 1. File starts with a version number and then defines three services: "web", "proxy", and "db".
 
